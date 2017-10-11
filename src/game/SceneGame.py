@@ -73,12 +73,10 @@ class SceneGame:
                       {'frame': enemy_001, 'time':100})
         }
 
-
-        fps = 2
-        pygame.time.set_timer(pygame.USEREVENT + 1, fps) # Event to fps count (which does not work. Apply classic fixed dt for physics and separate render time)
         pygame.time.set_timer(pygame.USEREVENT + 2, 2000) # Event to create enemies every 2 seconds or so
         update = True
         draw = True
+        self.clock = pygame.time.Clock()
 
     def run(self):
         for event in pygame.event.get():
@@ -93,11 +91,12 @@ class SceneGame:
 
                     return self
             self.dragon.handleEvents(event)
-            if event.type == pygame.USEREVENT + 1:
-                self.draw = True
-                self.update = True
             if event.type == pygame.USEREVENT + 2:
                 self.enemyList.append(create_random_enemy(self, self.enemy_frame_rect, self.enemy_frames, (self.width, self.height)))
+
+
+        self.draw = True
+        self.update = True
 
         if self.gamePaused:
             sfont = pygame.font.SysFont('Arial', 32)

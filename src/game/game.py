@@ -21,7 +21,10 @@ def main():
 
     scene = SceneGameStart.SceneGameStart(screen, Debug)
     not_done = True
+    fps = 60
+    clock = pygame.time.Clock()
     while not_done:
+        clock.tick_busy_loop(fps)
         scene = scene.run()
 
 if __name__ == "__main__":

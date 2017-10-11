@@ -1,7 +1,7 @@
 import pygame
 
 class AnimDrawable():
-    
+
     def __init__(self, start_anim, rect, frames):
         self.frames = frames
         self.rect = rect
@@ -15,6 +15,7 @@ class AnimDrawable():
 
     def restartAnim(self):
         self.cur_frame = 0
+        self.counter = 0
         self.cur_anim = self.next_anim
 
     def update(self, screen):
@@ -23,7 +24,7 @@ class AnimDrawable():
         if self.counter > self.frames[self.cur_anim][self.cur_frame]['time']:#Use references or something shorter, please
             self.counter = 0
             self.cur_frame+=1
-        
+
         try:
             frame = self.frames[self.cur_anim][self.cur_frame]['frame']
         except:
